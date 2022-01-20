@@ -8,11 +8,8 @@
     "build": "parcel build index.html --no-minify"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.7",
-    "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0",
     "react": "^16.8.0 || ^17.0.0",
-    "react-app-polyfill": "^1.0.0",
-    "subscriptions-transport-ws": "^0.9.0 || ^0.11.0"
+    "react-app-polyfill": "^1.0.0"
   },
   "alias": {
     "react": "../node_modules/react",
