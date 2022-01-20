@@ -1028,7 +1028,9 @@ if ("production" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.profiling.min.js":"NgRO"}],"vCxL":[function(require,module,exports) {
+},{"./cjs/react-dom.profiling.min.js":"NgRO"}],"pEDC":[function(require,module,exports) {
+
+},{}],"vCxL":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4967,7 +4969,68 @@ module.exports.reset = require('./reset')
  */
 module.exports.REVERSE_MAP = null
 
-},{"./prototype/bind":"amLf","./prototype/bindMultiple":"bCAK","./prototype/unbind":"vxXX","./prototype/trigger":"Kw0E","./prototype/reset.js":"tGU1","./prototype/stopCallback":"x1U3","./prototype/handleKey":"yzzG","./prototype/addEvents":"69o1","./prototype/bindSingle":"jpx2","./prototype/getKeyInfo":"saQR","./prototype/pickBestAction":"3mI9","./prototype/getReverseMap":"r0Si","./prototype/getMatches":"wGAJ","./prototype/resetSequences":"bTxj","./prototype/fireCallback":"LKND","./prototype/bindSequence":"bAm5","./prototype/resetSequenceTimer":"twk0","./prototype/detach":"axIL","./reset":"oMsy"}],"5nEh":[function(require,module,exports) {
+},{"./prototype/bind":"amLf","./prototype/bindMultiple":"bCAK","./prototype/unbind":"vxXX","./prototype/trigger":"Kw0E","./prototype/reset.js":"tGU1","./prototype/stopCallback":"x1U3","./prototype/handleKey":"yzzG","./prototype/addEvents":"69o1","./prototype/bindSingle":"jpx2","./prototype/getKeyInfo":"saQR","./prototype/pickBestAction":"3mI9","./prototype/getReverseMap":"r0Si","./prototype/getMatches":"wGAJ","./prototype/resetSequences":"bTxj","./prototype/fireCallback":"LKND","./prototype/bindSequence":"bAm5","./prototype/resetSequenceTimer":"twk0","./prototype/detach":"axIL","./reset":"oMsy"}],"9qb7":[function(require,module,exports) {
+var define;
+/*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames() {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				if (arg.length) {
+					var inner = classNames.apply(null, arg);
+					if (inner) {
+						classes.push(inner);
+					}
+				}
+			} else if (argType === 'object') {
+				if (arg.toString === Object.prototype.toString) {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				} else {
+					classes.push(arg.toString());
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+		// register as 'classnames', consistent with npm package name
+		define('classnames', [], function () {
+			return classNames;
+		});
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
+},{}],"5nEh":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4980,6 +5043,8 @@ var _react = _interopRequireWildcard(require("react"));
 var _invariant = _interopRequireDefault(require("invariant"));
 
 var _combokeys2 = _interopRequireDefault(require("combokeys"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
 
 var _helpers = _interopRequireDefault(require("../helpers"));
 
@@ -5180,10 +5245,22 @@ function Shortcuts(_props) {
     }; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   var props = propsRef.current;
-  return _react.default.createElement("div", {
+  var _a = props.tag,
+      tag = _a === void 0 ? 'div' : _a;
+  var className = (0, _classnames.default)(props.className, 'focus-invisible');
+
+  if (_react.default.isValidElement(tag)) {
+    return _react.default.cloneElement(tag, {
+      ref: domNodeRef,
+      tabIndex: props.tabIndex,
+      className: (0, _classnames.default)(className, tag.props.className)
+    }, props.children);
+  }
+
+  return _react.default.createElement(tag, {
     ref: domNodeRef,
     tabIndex: props.tabIndex,
-    className: props.className
+    className: className
   }, props.children);
 }
 
@@ -5200,7 +5277,7 @@ Shortcuts.defaultProps = {
 };
 var _default = Shortcuts;
 exports.default = _default;
-},{"react":"1n8/","invariant":"2gTp","combokeys":"t27O","../helpers":"WrHh","../ShortcutManager":"Edm1"}],"+fUd":[function(require,module,exports) {
+},{"react":"1n8/","invariant":"2gTp","combokeys":"t27O","classnames":"9qb7","../helpers":"WrHh","../ShortcutManager":"Edm1"}],"+fUd":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5237,6 +5314,8 @@ Object.defineProperty(exports, "useShortcuts", {
   }
 });
 
+require("./style.less");
+
 var _ShortcutManager = _interopRequireWildcard(require("./ShortcutManager"));
 
 var _Shortcuts = _interopRequireDefault(require("./components/Shortcuts"));
@@ -5246,7 +5325,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-},{"./ShortcutManager":"Edm1","./components/Shortcuts":"5nEh"}],"zo2T":[function(require,module,exports) {
+},{"./style.less":"pEDC","./ShortcutManager":"Edm1","./components/Shortcuts":"5nEh"}],"zo2T":[function(require,module,exports) {
 "use strict";
 
 var __extends = this && this.__extends || function () {
@@ -5329,6 +5408,16 @@ var keymap = {
     MOVE_DOWN: ['down', 's']
   }
 };
+var CustomTag = React.forwardRef(function (props, ref) {
+  var style = props.style,
+      children = props.children,
+      className = props.className;
+  return React.createElement("div", {
+    ref: ref,
+    className: className,
+    style: style
+  }, children);
+});
 
 var Box = function Box(_a) {
   var x = _a.x,
@@ -5377,11 +5466,12 @@ var Box = function Box(_a) {
   };
 
   return React.createElement(src_1.Shortcuts, {
+    tag: React.createElement(CustomTag, {
+      style: style
+    }),
     name: "BOX",
     handler: handleMove
-  }, React.createElement("div", {
-    style: style
-  }, index + 1));
+  }, index + 1);
 };
 
 var App = function (_super) {
@@ -5461,4 +5551,4 @@ var App = function (_super) {
 
 (0, react_dom_1.render)(React.createElement(App, null), document.getElementById('root'));
 },{"react":"1n8/","react-dom":"wLSN","../src":"+fUd"}]},{},["zo2T"], null)
-//# sourceMappingURL=/example.21bf1b01.js.map
+//# sourceMappingURL=/example.799b9a5c.js.map

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/style.less"],"names":[],"mappings":"AACE,gBAAC;EACC,6BAAA","file":"example.b48dcab1.css","sourceRoot":"..","sourcesContent":[".focus-invisible {\n  &:focus-visible {\n    outline: transparent auto 1px;\n  }\n}\n"]}
