@@ -12,6 +12,21 @@ const keymap = {
   },
 };
 
+type CustomTagProps = {
+  style: any;
+  className?: string;
+  children?: React.ReactNode;
+};
+
+const CustomTag = React.forwardRef(function(props: CustomTagProps, ref: any) {
+  const { style, children, className } = props;
+  return (
+    <div ref={ref} className={className} style={style}>
+      {children}
+    </div>
+  );
+});
+
 const Box = ({ x, y, color, index, onMoveRequest }) => {
   const style: React.CSSProperties = {
     width: '100px',
@@ -42,8 +57,8 @@ const Box = ({ x, y, color, index, onMoveRequest }) => {
   };
 
   return (
-    <Shortcuts name="BOX" handler={handleMove}>
-      <div style={style}>{index + 1}</div>
+    <Shortcuts tag={<CustomTag style={style} />} name="BOX" handler={handleMove}>
+      {index + 1}
     </Shortcuts>
   );
 };

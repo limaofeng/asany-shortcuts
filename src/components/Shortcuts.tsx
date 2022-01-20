@@ -2,11 +2,13 @@ import React, { useCallback, useEffect, useRef } from 'react';
 
 import invariant from 'invariant';
 import Combokeys from 'combokeys';
+import classnames from 'classnames';
 
 import helpers from '../helpers';
 import { useShortcuts } from '../ShortcutManager';
 
 type ShortcutsProps = {
+  tag?: string | React.ReactNode | React.Component;
   children: React.ReactNode;
   handler: (shortcutName: string, event: any) => void;
   name: string;
@@ -197,10 +199,30 @@ function Shortcuts(_props: ShortcutsProps) {
 
   const props = propsRef.current;
 
-  return (
-    <div ref={domNodeRef} tabIndex={props.tabIndex} className={props.className}>
-      {props.children}
-    </div>
+  const { tag = 'div' } = props;
+
+  const className = classnames(props.className, 'focus-invisible');
+
+  if (React.isValidElement(tag)) {
+    return React.cloneElement(
+      tag as any,
+      {
+        ref: domNodeRef,
+        tabIndex: props.tabIndex,
+        className: classnames(className, (tag.props as any).className),
+      },
+      props.children
+    );
+  }
+
+  return React.createElement(
+    tag as any,
+    {
+      ref: domNodeRef,
+      tabIndex: props.tabIndex,
+      className,
+    },
+    props.children
   );
 }
 
