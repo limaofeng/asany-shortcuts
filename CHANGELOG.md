@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.1...v0.1.2) (2022-01-20)
+
+
+### Features
+
+* 组件 Shortcuts 支持 tag 属性 ([1de7484](https://github.com/limaofeng/asany-shortcuts/commit/1de748474e0bf9a9cba0eb496b1bc3d2afc867fe))
+
+
+
 ## [0.1.1](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.0...v0.1.1) (2022-01-20)
 
 
