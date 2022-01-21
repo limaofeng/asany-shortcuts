@@ -1,3 +1,12 @@
+## [0.1.3](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.2...v0.1.3) (2022-01-21)
+
+
+### Features
+
+* 支持 ref 属性 ([5a2807d](https://github.com/limaofeng/asany-shortcuts/commit/5a2807d4ced2014b82cd0b468272383f6467e2c6))
+
+
+
 ## [0.1.2](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.1...v0.1.2) (2022-01-20)
 
 
