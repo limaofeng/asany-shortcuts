@@ -9,7 +9,7 @@ import { useShortcuts } from '../ShortcutManager';
 
 type ShortcutsProps = {
   tag?: string | React.ReactNode | React.Component;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   handler: (shortcutName: string, event: any) => void;
   name: string;
   tabIndex: number;
@@ -204,14 +204,31 @@ function Shortcuts(_props: ShortcutsProps) {
   const className = classnames(props.className, 'focus-invisible');
 
   if (React.isValidElement(tag)) {
+    let tagRef = (tag as any).ref;
+    if (tagRef) {
+      tagRef = (ref: any) => {
+        (domNodeRef as any).current = ref;
+        if (typeof (tag as any).ref === 'function') {
+          (tag as any).ref(ref);
+        } else {
+          (tag as any).ref.current = ref;
+        }
+      };
+    } else {
+      tagRef = domNodeRef;
+    }
+
     return React.cloneElement(
       tag as any,
       {
-        ref: domNodeRef,
+        ref: tagRef,
         tabIndex: props.tabIndex,
         className: classnames(className, (tag.props as any).className),
       },
-      props.children
+      <>
+        {(tag.props as any).children}
+        {props.children}
+      </>
     );
   }
 
