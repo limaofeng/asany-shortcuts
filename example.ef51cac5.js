@@ -5250,11 +5250,27 @@ function Shortcuts(_props) {
   var className = (0, _classnames.default)(props.className, 'focus-invisible');
 
   if (_react.default.isValidElement(tag)) {
+    var tagRef = tag.ref;
+
+    if (tagRef) {
+      tagRef = function tagRef(ref) {
+        domNodeRef.current = ref;
+
+        if (typeof tag.ref === 'function') {
+          tag.ref(ref);
+        } else {
+          tag.ref.current = ref;
+        }
+      };
+    } else {
+      tagRef = domNodeRef;
+    }
+
     return _react.default.cloneElement(tag, {
-      ref: domNodeRef,
+      ref: tagRef,
       tabIndex: props.tabIndex,
       className: (0, _classnames.default)(className, tag.props.className)
-    }, props.children);
+    }, _react.default.createElement(_react.default.Fragment, null, tag.props.children, props.children));
   }
 
   return _react.default.createElement(tag, {
@@ -5551,4 +5567,4 @@ var App = function (_super) {
 
 (0, react_dom_1.render)(React.createElement(App, null), document.getElementById('root'));
 },{"react":"1n8/","react-dom":"wLSN","../src":"+fUd"}]},{},["zo2T"], null)
-//# sourceMappingURL=/example.799b9a5c.js.map
+//# sourceMappingURL=/example.ef51cac5.js.map
