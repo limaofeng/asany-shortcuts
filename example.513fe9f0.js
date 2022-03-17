@@ -3666,6 +3666,8 @@ function (_super) {
       return item;
     };
 
+    _this.setMaxListeners(1000);
+
     _this._keymap = keymap;
     return _this;
   }
@@ -5038,6 +5040,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _tslib = require("tslib");
+
 var _react = _interopRequireWildcard(require("react"));
 
 var _invariant = _interopRequireDefault(require("invariant"));
@@ -5058,7 +5062,12 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function Shortcuts(_props) {
   var domNodeRef = (0, _react.useRef)(null);
-  var shortcuts = (0, _ShortcutManager.useShortcuts)(); // NOTE: combokeys must be instance per component
+  var shortcuts = (0, _ShortcutManager.useShortcuts)();
+
+  var _a = (0, _tslib.__read)((0, _react.useState)(false), 2),
+      focused = _a[0],
+      setFocused = _a[1]; // NOTE: combokeys must be instance per component
+
 
   var state = (0, _react.useRef)({});
   var propsRef = (0, _react.useRef)(_props);
@@ -5245,9 +5254,17 @@ function Shortcuts(_props) {
     }; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   var props = propsRef.current;
-  var _a = props.tag,
-      tag = _a === void 0 ? 'div' : _a;
-  var className = (0, _classnames.default)(props.className, 'focus-invisible');
+  var _b = props.tag,
+      tag = _b === void 0 ? 'div' : _b;
+  var className = (0, _classnames.default)(props.className, {
+    focused: focused
+  });
+  var handleFocus = (0, _react.useCallback)(function () {
+    setFocused(true);
+  }, []);
+  var handleBlur = (0, _react.useCallback)(function () {
+    setFocused(false);
+  }, []);
 
   if (_react.default.isValidElement(tag)) {
     var tagRef = tag.ref;
@@ -5269,6 +5286,8 @@ function Shortcuts(_props) {
     return _react.default.cloneElement(tag, {
       ref: tagRef,
       tabIndex: props.tabIndex,
+      onFocus: handleFocus,
+      onBlur: handleBlur,
       className: (0, _classnames.default)(className, tag.props.className)
     }, _react.default.createElement(_react.default.Fragment, null, tag.props.children, props.children));
   }
@@ -5276,7 +5295,9 @@ function Shortcuts(_props) {
   return _react.default.createElement(tag, {
     ref: domNodeRef,
     tabIndex: props.tabIndex,
-    className: className
+    className: className,
+    onFocus: handleFocus,
+    onBlur: handleBlur
   }, props.children);
 }
 
@@ -5293,7 +5314,7 @@ Shortcuts.defaultProps = {
 };
 var _default = Shortcuts;
 exports.default = _default;
-},{"react":"1n8/","invariant":"2gTp","combokeys":"t27O","classnames":"9qb7","../helpers":"WrHh","../ShortcutManager":"Edm1"}],"+fUd":[function(require,module,exports) {
+},{"tslib":"vCxL","react":"1n8/","invariant":"2gTp","combokeys":"t27O","classnames":"9qb7","../helpers":"WrHh","../ShortcutManager":"Edm1"}],"+fUd":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5567,4 +5588,4 @@ var App = function (_super) {
 
 (0, react_dom_1.render)(React.createElement(App, null), document.getElementById('root'));
 },{"react":"1n8/","react-dom":"wLSN","../src":"+fUd"}]},{},["zo2T"], null)
-//# sourceMappingURL=/example.ef51cac5.js.map
+//# sourceMappingURL=/example.513fe9f0.js.map
