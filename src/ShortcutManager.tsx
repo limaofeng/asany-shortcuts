@@ -24,6 +24,7 @@ class ShortcutManager extends EventEmitter {
 
   constructor(keymap = {}) {
     super();
+    this.setMaxListeners(1000);
     this._keymap = keymap;
   }
 

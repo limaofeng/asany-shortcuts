@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import invariant from 'invariant';
 import Combokeys from 'combokeys';
@@ -28,9 +28,10 @@ function Shortcuts(_props: ShortcutsProps) {
 
   const shortcuts = useShortcuts();
 
+  const [focused, setFocused] = useState<boolean>(false);
+
   // NOTE: combokeys must be instance per component
   const state = useRef<{ _combokeys?: any; _lastEvent?: any }>({});
-
   const propsRef = useRef(_props);
 
   propsRef.current = _props;
@@ -201,7 +202,15 @@ function Shortcuts(_props: ShortcutsProps) {
 
   const { tag = 'div' } = props;
 
-  const className = classnames(props.className, 'focus-invisible');
+  const className = classnames(props.className, { focused });
+
+  const handleFocus = useCallback(() => {
+    setFocused(true);
+  }, []);
+
+  const handleBlur = useCallback(() => {
+    setFocused(false);
+  }, []);
 
   if (React.isValidElement(tag)) {
     let tagRef = (tag as any).ref;
@@ -223,6 +232,8 @@ function Shortcuts(_props: ShortcutsProps) {
       {
         ref: tagRef,
         tabIndex: props.tabIndex,
+        onFocus: handleFocus,
+        onBlur: handleBlur,
         className: classnames(className, (tag.props as any).className),
       },
       <>
@@ -238,6 +249,8 @@ function Shortcuts(_props: ShortcutsProps) {
       ref: domNodeRef,
       tabIndex: props.tabIndex,
       className,
+      onFocus: handleFocus,
+      onBlur: handleBlur,
     },
     props.children
   );
