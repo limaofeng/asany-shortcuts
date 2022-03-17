@@ -1,3 +1,12 @@
+## [0.1.4](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.3...v0.1.4) (2022-03-17)
+
+
+### Features
+
+* 设置 EventEmitter 的 MaxListeners 为 1000 ([80c331c](https://github.com/limaofeng/asany-shortcuts/commit/80c331c851ce22727a4b1e6caf1ee30b4b035264))
+
+
+
 ## [0.1.3](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.2...v0.1.3) (2022-01-21)
 
 
