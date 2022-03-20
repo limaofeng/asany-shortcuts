@@ -1,3 +1,12 @@
+## [0.1.5](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.4...v0.1.5) (2022-03-20)
+
+
+### Bug Fixes
+
+* 修复选中时出现的边框 ([a5e660c](https://github.com/limaofeng/asany-shortcuts/commit/a5e660cb65021f521f4eda96c131fd5933265a37))
+
+
+
 ## [0.1.4](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.3...v0.1.4) (2022-03-17)
 
 
