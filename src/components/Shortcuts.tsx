@@ -202,7 +202,7 @@ function Shortcuts(_props: ShortcutsProps) {
 
   const { tag = 'div' } = props;
 
-  const className = classnames(props.className, { focused });
+  const className = classnames(props.className, 'focus-invisible', { focused });
 
   const handleFocus = useCallback(() => {
     setFocused(true);
