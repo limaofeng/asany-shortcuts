@@ -5256,7 +5256,7 @@ function Shortcuts(_props) {
   var props = propsRef.current;
   var _b = props.tag,
       tag = _b === void 0 ? 'div' : _b;
-  var className = (0, _classnames.default)(props.className, {
+  var className = (0, _classnames.default)(props.className, 'focus-invisible', {
     focused: focused
   });
   var handleFocus = (0, _react.useCallback)(function () {
@@ -5588,4 +5588,4 @@ var App = function (_super) {
 
 (0, react_dom_1.render)(React.createElement(App, null), document.getElementById('root'));
 },{"react":"1n8/","react-dom":"wLSN","../src":"+fUd"}]},{},["zo2T"], null)
-//# sourceMappingURL=/example.513fe9f0.js.map
+//# sourceMappingURL=/example.b4627df0.js.map
