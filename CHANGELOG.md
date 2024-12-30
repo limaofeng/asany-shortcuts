@@ -1,3 +1,12 @@
+## [0.1.6](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.5...v0.1.6) (2024-12-30)
+
+
+### Features
+
+* enhance Shortcuts component with additional props and default values ([1dd6012](https://github.com/limaofeng/asany-shortcuts/commit/1dd60124ab2484cbdb569a09503c7b5db664a43e))
+
+
+
 ## [0.1.5](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.4...v0.1.5) (2022-03-20)
 
 
