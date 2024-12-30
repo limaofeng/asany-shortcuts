@@ -23,7 +23,25 @@ type ShortcutsProps = {
   alwaysFireHandler: boolean;
 };
 
-function Shortcuts(_props: ShortcutsProps) {
+function Shortcuts({
+  tabIndex = -1,
+  stopPropagation = true,
+  preventDefault = false,
+  global = false,
+  isolate = false,
+  alwaysFireHandler = false,
+  ...sprops
+}: ShortcutsProps) {
+  const _props = {
+    tabIndex,
+    stopPropagation,
+    preventDefault,
+    global,
+    isolate,
+    alwaysFireHandler,
+    ...sprops,
+  };
+
   const domNodeRef = useRef<HTMLDivElement>(null);
 
   const shortcuts = useShortcuts();
@@ -255,17 +273,5 @@ function Shortcuts(_props: ShortcutsProps) {
     props.children
   );
 }
-
-Shortcuts.defaultProps = {
-  tabIndex: -1,
-  className: null,
-  eventType: null,
-  stopPropagation: true,
-  preventDefault: false,
-  targetNodeSelector: null,
-  global: false,
-  isolate: false,
-  alwaysFireHandler: false,
-};
 
 export default Shortcuts;
