@@ -5033,6 +5033,7 @@ var define;
 }());
 
 },{}],"5nEh":[function(require,module,exports) {
+var global = arguments[3];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5060,13 +5061,36 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function Shortcuts(_props) {
+function Shortcuts(_a) {
+  var _b = _a.tabIndex,
+      tabIndex = _b === void 0 ? -1 : _b,
+      _c = _a.stopPropagation,
+      stopPropagation = _c === void 0 ? true : _c,
+      _d = _a.preventDefault,
+      preventDefault = _d === void 0 ? false : _d,
+      _e = _a.global,
+      global = _e === void 0 ? false : _e,
+      _f = _a.isolate,
+      isolate = _f === void 0 ? false : _f,
+      _g = _a.alwaysFireHandler,
+      alwaysFireHandler = _g === void 0 ? false : _g,
+      sprops = (0, _tslib.__rest)(_a, ["tabIndex", "stopPropagation", "preventDefault", "global", "isolate", "alwaysFireHandler"]);
+
+  var _props = (0, _tslib.__assign)({
+    tabIndex: tabIndex,
+    stopPropagation: stopPropagation,
+    preventDefault: preventDefault,
+    global: global,
+    isolate: isolate,
+    alwaysFireHandler: alwaysFireHandler
+  }, sprops);
+
   var domNodeRef = (0, _react.useRef)(null);
   var shortcuts = (0, _ShortcutManager.useShortcuts)();
 
-  var _a = (0, _tslib.__read)((0, _react.useState)(false), 2),
-      focused = _a[0],
-      setFocused = _a[1]; // NOTE: combokeys must be instance per component
+  var _h = (0, _tslib.__read)((0, _react.useState)(false), 2),
+      focused = _h[0],
+      setFocused = _h[1]; // NOTE: combokeys must be instance per component
 
 
   var state = (0, _react.useRef)({});
@@ -5254,8 +5278,8 @@ function Shortcuts(_props) {
     }; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   var props = propsRef.current;
-  var _b = props.tag,
-      tag = _b === void 0 ? 'div' : _b;
+  var _j = props.tag,
+      tag = _j === void 0 ? 'div' : _j;
   var className = (0, _classnames.default)(props.className, 'focus-invisible', {
     focused: focused
   });
@@ -5301,17 +5325,6 @@ function Shortcuts(_props) {
   }, props.children);
 }
 
-Shortcuts.defaultProps = {
-  tabIndex: -1,
-  className: null,
-  eventType: null,
-  stopPropagation: true,
-  preventDefault: false,
-  targetNodeSelector: null,
-  global: false,
-  isolate: false,
-  alwaysFireHandler: false
-};
 var _default = Shortcuts;
 exports.default = _default;
 },{"tslib":"vCxL","react":"1n8/","invariant":"2gTp","combokeys":"t27O","classnames":"9qb7","../helpers":"WrHh","../ShortcutManager":"Edm1"}],"+fUd":[function(require,module,exports) {
@@ -5588,4 +5601,4 @@ var App = function (_super) {
 
 (0, react_dom_1.render)(React.createElement(App, null), document.getElementById('root'));
 },{"react":"1n8/","react-dom":"wLSN","../src":"+fUd"}]},{},["zo2T"], null)
-//# sourceMappingURL=/example.b4627df0.js.map
+//# sourceMappingURL=/example.9814e84a.js.map
