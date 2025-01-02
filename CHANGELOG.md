@@ -1,3 +1,7 @@
+## [0.1.7](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.6...v0.1.7) (2025-01-02)
+
+
+
 ## [0.1.6](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.5...v0.1.6) (2024-12-30)
 
 
