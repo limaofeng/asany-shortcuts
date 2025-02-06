@@ -1,3 +1,12 @@
+## [0.1.10](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.9...v0.1.10) (2025-02-06)
+
+
+### Bug Fixes
+
+* props 类型优化 ([3184463](https://github.com/limaofeng/asany-shortcuts/commit/3184463fb0a1e2fb458d6ad0f8c7a14589b6ea33))
+
+
+
 ## [0.1.9](https://github.com/limaofeng/asany-shortcuts/compare/v0.1.8...v0.1.9) (2025-01-02)
 
 
