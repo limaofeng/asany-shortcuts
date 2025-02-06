@@ -10,17 +10,17 @@ import { useShortcuts } from '../ShortcutManager';
 type ShortcutsProps = {
   tag?: string | React.ReactNode | React.Component;
   children?: React.ReactNode;
-  handler: (shortcutName: string, event: any) => void;
-  name: string;
-  tabIndex: number;
-  className: string;
-  eventType: string;
-  stopPropagation: boolean;
-  preventDefault: boolean;
-  targetNodeSelector: string;
-  global: boolean;
-  isolate: boolean;
-  alwaysFireHandler: boolean;
+  handler?: (shortcutName: string, event: any) => void;
+  name?: string;
+  tabIndex?: number;
+  className?: string;
+  eventType?: string;
+  stopPropagation?: boolean;
+  preventDefault?: boolean;
+  targetNodeSelector?: string;
+  global?: boolean;
+  isolate?: boolean;
+  alwaysFireHandler?: boolean;
 };
 
 function Shortcuts({
